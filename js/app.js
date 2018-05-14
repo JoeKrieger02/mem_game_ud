@@ -6,8 +6,8 @@
 var deck = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", "fa-anchor", "fa-anchor", "fa-bolt", "fa-bolt", "fa-cube", "fa-cube", "fa-leaf", "fa-leaf", "fa-bicycle", "fa-bicycle", "fa-bomb", "fa-bomb"];
 
 /*
-*   DECLARATIONS
-*/
+ *   DECLARATIONS
+ */
 
 var started = false;
 var openCard = [];
@@ -19,8 +19,8 @@ var timer;
 
 
 /*
-* LAUNCH FUNCTIONS
-*/
+ * LAUNCH FUNCTIONS
+ */
 
 shuffle(deck);
 createHtml();
@@ -28,9 +28,9 @@ cardOpener();
 startClock();
 
 /*
-* Shuffle function from http://stackoverflow.com/a/2450976
-* (provided by Udacity)
-*/
+ * Shuffle function from http://stackoverflow.com/a/2450976
+ * (provided by Udacity)
+ */
 
 function shuffle(array) {
 	var currentIndex = array.length,
@@ -69,53 +69,55 @@ function createHtml() {
 }
 
 /*
-* OPEN CARDS
-*/
+ * OPEN CARDS
+ */
 
 function cardOpener() {
 
 
-		$(".card").on("click", function() {
-    if ($(this).hasClass("open show")) { return; }
-    $(this).toggleClass("flip open show");
-    openCard.push($(this));
-    started = true;
+	$(".card").on("click", function () {
+		if ($(this).hasClass("open show")) {
+			return;
+		}
+		$(this).toggleClass("flip open show");
+		openCard.push($(this));
+		started = true;
 
 		/*
-		* IF 2 CARDS OPEN, CHECK FOR A MATCH
-		* (found on GitHub)
-		*/
+		 * IF 2 CARDS OPEN, CHECK FOR A MATCH
+		 * (found on GitHub)
+		 */
 
 		if (openCard.length === 2) {
-      if (openCard[0][0].classList[2] === openCard[1][0].classList[2]) {
-      openCard[0][0].classList.add("bounce", "match");
-      openCard[1][0].classList.add("bounce", "match");
-			$(openCard[0]).off("click");
-      $(openCard[1]).off("click");
+			if (openCard[0][0].classList[2] === openCard[1][0].classList[2]) {
+				openCard[0][0].classList.add("bounce", "match");
+				openCard[1][0].classList.add("bounce", "match");
+				$(openCard[0]).off("click");
+				$(openCard[1]).off("click");
 
-      match += 1;
-      moveCounter++;
-      removeOpenCards();
-      findWinner();
-      } else {
-      // If classes don't match, add "wrong" class
-      openCard[0][0].classList.add("shake", "wrong");
-      openCard[1][0].classList.add("shake", "wrong");
-      // Set timeout to remove "show" and "open" class
-      setTimeout(removeClass, 1100);
-      // Reset openCard.length to 0
-      setTimeout(removeOpenCards, 1100);
-      moveCounter++;
-      }
-    }
+				match += 1;
+				moveCounter++;
+				removeOpenCards();
+				findWinner();
+			} else {
+				// If classes don't match, add "wrong" class
+				openCard[0][0].classList.add("shake", "wrong");
+				openCard[1][0].classList.add("shake", "wrong");
+				// Set timeout to remove "show" and "open" class
+				setTimeout(removeClass, 1100);
+				// Reset openCard.length to 0
+				setTimeout(removeOpenCards, 1100);
+				moveCounter++;
+			}
+		}
 		updateMoves();
 	})
 }
 
 /*
-* POPUP prompt if WIN
-* source: www.w3schools.com
-*/
+ * POPUP prompt if WIN
+ * source: www.w3schools.com
+ */
 
 function findWinner() {
 	if (match === 8) {
@@ -147,72 +149,67 @@ function findWinner() {
 }
 
 /*
-* USER INTERFACE "MOVES" TEXT
-*/
+ * USER INTERFACE "MOVES" TEXT
+ */
 
 function updateMoves() {
 	var movesText = document.getElementById("movesText");
 	var movesCounterText = document.getElementById("moves");
-	var moves_string ;
+	var moves_string;
 	var movesCounterText_string;
 
 
 	if (moveCounter <= 1) {
 		moves_string = " Move";
-	}
-	else {
+	} else {
 		moves_string = " Moves";
 	}
 	movesCounterText_string = moveCounter;
 
 	if (moveCounter > 0 && moveCounter < 10) {
 		numStars = numStars;
-	}
-	else if (moveCounter >= 10 && moveCounter <= 18) {
+	} else if (moveCounter >= 10 && moveCounter <= 18) {
 		var starOne = document.getElementById("starOne");
 		starOne.className = "fa";
 		numStars = "2";
-	}
-	else if (moveCounter > 18) {
+	} else if (moveCounter > 18) {
 		var starTwo = document.getElementById("starTwo");
 		starTwo.className = "fa";
 		numStars = "1";
 	}
 
 	movesCounterText.innerHTML = movesCounterText_string;
-	movesText.innerHTML= moves_string;
+	movesText.innerHTML = moves_string;
 }
 
 
-
-
 /*
-* REMOVE CARD CLASSES
-*/
+ * REMOVE CARD CLASSES
+ */
 
 function removeClass() {
-  $(".card").removeClass("show open flip bounce shake wrong");
-  removeOpenCards();
+	$(".card").removeClass("show open flip bounce shake wrong");
+	removeOpenCards();
 }
 
 function removeOpenCards() {
-  openCard = [];
+	openCard = [];
 }
 
 /*
-* 	REMOVE EVENT LISTENER FOR OPEN CARDS
-*/
+ * 	REMOVE EVENT LISTENER FOR OPEN CARDS
+ */
 
 function disableClick() {
- openCard.forEach(function (card) {
-   card.off("click");
-  })
+	openCard.forEach(function (card) {
+		card.off("click");
+	})
 }
 
 /*
-*	 TIMER 	(starts on first click)
-* (found on GitHub)
-*/
+ *	 TIMER 	(starts on first click)
+ * (found on GitHub)
+ */
 function startClock() {
 	let clicks = 0;
 	$(".card").on("click", function () {
@@ -232,8 +229,8 @@ function startClock() {
 }
 
 /*
-* RESTART BUTTON
-*/
+ * RESTART BUTTON
+ */
 function NextRound() {
 	var restart = document.getElementById("restart");
 
