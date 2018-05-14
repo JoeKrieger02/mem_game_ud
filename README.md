@@ -21,7 +21,21 @@ This repository is the starter code for _all_ Udacity students. Therefore, we mo
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Sources
+animations :
+https://gist.github.com/smokinjoe/5861897
 
-shannonj498 GitHub: https://github.com/shannonj498/memory-matching-game/blob/master/js/app.js
+modal box
+https://www.w3schools.com/howto/howto_css_modals.asp
+
+Code insipiration
+
+ervaibhavkumar GitHub:
+https://github.com/ervaibhavkumar/Udacity-Memory-Game
+ChrisPereira GitHub:
+https://github.com/ChrisPereira GitHub:/MemoryGame
+PoBlue GitHub:
+https://github.com/PoBlue/memory-game
+aviaryan GitHub:
+https://github.com/aviaryan/ud-memory-game
 icsantos GitHub: https://github.com/icsantos/frontend-nanodegree-memory-game/blob/master/js/app.js
 bcko GitHub: https://github.com/bcko/Ud-FE-MemoryGame-JS/blob/master/js/app.js
