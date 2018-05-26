@@ -21,12 +21,16 @@ var timer;
 /*
  * LAUNCH FUNCTIONS
  */
+initGame();
+
+function initGame(){
 
 shuffle(deck);
 createHtml();
 cardOpener();
 startClock();
 
+}
 /*
  * Shuffle function from http://stackoverflow.com/a/2450976
  * (provided by Udacity)
@@ -54,13 +58,13 @@ function shuffle(array) {
  */
 
 function createHtml() {
-	let shuffled_deck = shuffle(deck);
+	var shuffled_deck = shuffle(deck);
 
 
 	shuffled_deck.forEach(function (card) {
-		let li_node = document.createElement("LI");
-		let i_node = document.createElement("I");
-		let re_deck = document.getElementsByClassName("deck");
+		var li_node = document.createElement("LI");
+		var i_node = document.createElement("I");
+		var re_deck = document.getElementsByClassName("deck");
 
 		i_node.className = "card fa " + card;
 		li_node.appendChild(i_node);
@@ -85,7 +89,7 @@ function cardOpener() {
 
 		/*
 		 * IF 2 CARDS OPEN, CHECK FOR A MATCH
-		 * (found on GitHub)
+		 * (found on GitHub: sources in readme)
 		 */
 
 		if (openCard.length === 2) {
@@ -108,11 +112,21 @@ function cardOpener() {
 				// Reset openCard.length to 0
 				setTimeout(removeOpenCards, 1100);
 				moveCounter++;
+
+
+
 			}
 		}
 		updateMoves();
 	})
+
 }
+
+
+
+
+
+
 
 /*
  * POPUP prompt if WIN
@@ -192,13 +206,17 @@ function removeClass() {
 	removeOpenCards();
 }
 
+/*
+* RESET openCard
+*/
+
 function removeOpenCards() {
 	openCard = [];
 }
 
 /*
  * 	REMOVE EVENT LISTENER FOR OPEN CARDS
- */
+*/
 
 function disableClick() {
 	openCard.forEach(function (card) {
@@ -210,8 +228,10 @@ function disableClick() {
  *	 TIMER 	(starts on first click)
  * (found on GitHub)
  */
+
+
 function startClock() {
-	let clicks = 0;
+	var clicks = 0;
 	$(".card").on("click", function () {
 		clicks += 1;
 		if (clicks === 1) {
@@ -227,6 +247,7 @@ function startClock() {
 		}
 	})
 }
+
 
 /*
  * RESTART BUTTON
